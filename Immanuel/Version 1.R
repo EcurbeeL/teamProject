@@ -7,7 +7,7 @@ test <- read.csv('/Users/immanuelspiess/Documents/HTWG /8/Teamprojekt/Housing/Da
 
 
 #fit model 
-model <- randomForest(SalePrice ~ GrLivArea + OverallQual + YearBuilt + TotRmsAbvGrd, 
+model <- randomForest(SalePrice ~ GrLivArea + OverallQual + YearBuilt + TotRmsAbvGrd , 
                       data = train, ntree=500)
 
 plot(model)
