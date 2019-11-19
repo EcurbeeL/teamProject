@@ -20,4 +20,4 @@ head(predicted_prices)
 
 ergebnisse <- data.frame('Id' = as.integer(test$Id), 'SalePrice' = predicted_prices)
 
-write.csv(ergebnisse, 'ergebnisse.csv', row.names = FALSE, quote = FALSE)
+write.csv(ergebnisse, 'Immanuel_V1_Erg.csv', row.names = FALSE, quote = FALSE)
