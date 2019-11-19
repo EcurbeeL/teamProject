@@ -3,6 +3,7 @@ library(randomForest) # for random forests
 library(tidyverse)
 library(set)
 library(do)
+library(dplyr)
 
 # read in the test and train data
 train <- read.csv("C:/Users/Ivan/Documents/teamProject/HouseData/train.csv")
@@ -24,12 +25,14 @@ write_csv(my_submission, 'Submissions/V1.csv')
 
 summary(train)
 
-train[is.na(train)]=0
-train <- train[is.na(train)]=0
 
-ind <-   which(sapply(train, is.numeric))
-for(j in ind){
-  set(train, i = which(is.na(train[[j]])), j = j, value = 0)
-}
+train -> data_5
 
-train[is.na(train)] <- 0
+i <- sapply(data_5, is.factor) # Identify all factor variables in your data
+data_5[i] <- lapply(data_5[i], as.character) # Convert factors to character variables
+data_5[is.na(data_5)] <- 0 # Replace NA with 0
+data_5[i] <- lapply(data_5[i], as.factor) # Convert character columns back to factors
+
+colSums(sapply(data_5, is.na))
+
+         
