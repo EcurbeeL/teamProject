@@ -16,15 +16,10 @@ train[i] <- lapply(train[i], as.factor) # Convert character columns back to fact
 colSums(sapply(train, is.na))
 
 # fit our model
-<<<<<<< HEAD
 model <- randomForest(SalePrice ~ LotArea + OverallQual + YearBuilt +  TotalBsmtSF+  TotRmsAbvGrd, data = train)
 
 #YearRemodAdd +  MasVnrArea + BsmtFinSF1 +
- 
-=======
-model <- randomForest(SalePrice ~ LotArea + OverallQual + YearBuilt + TotRmsAbvGrd, data = train)
 
->>>>>>> 3d0aa16c23e27171bb4a2905c77830f3a94550a8
 # use our model to make predictions
 predicted_prices <- predict(model, newdata = test)
 
@@ -34,10 +29,7 @@ head(predicted_prices)
 # create a dataframe with our results
 my_submission <- data_frame('Id' = as.integer(test$Id), 'SalePrice' = predicted_prices)
 # save our file
-<<<<<<< HEAD
+
 write_csv(my_submission, 'Submissions/V1-Iv.csv')
-=======
-write_csv(my_submission, 'Submissions/V1.csv')
->>>>>>> 3d0aa16c23e27171bb4a2905c77830f3a94550a8
 
 
