@@ -63,7 +63,7 @@ boost <- xgboost(data = train_final, label = train$SalePrice, max.depth = 5, eta
 
 pred <- predict(boost, test_final)
 ergebnisseV2 <- data.frame('Id' = as.integer(test$Id), 'SalePrice' = pred)
-write.csv(ergebnisseV2, 'ergebnisseV3.csv', row.names = FALSE, quote = FALSE)
+write.csv(ergebnisseV2, 'Immanuel_V2_Erg.csv', row.names = FALSE, quote = FALSE)
 write.csv(pred, file="answer.csv")
 imp <- xgb.importance (model = boost)
 xgb.plot.importance (importance_matrix = imp[1:20]) 
