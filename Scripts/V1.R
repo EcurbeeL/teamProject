@@ -1,7 +1,8 @@
 library(rpart) # for regression trees
 library(randomForest) # for random forests
 library(tidyverse)
-
+library(set)
+library(do)
 
 # read in the test and train data
 train <- read.csv("C:/Users/Ivan/Documents/teamProject/HouseData/train.csv")
@@ -23,3 +24,12 @@ write_csv(my_submission, 'Submissions/V1.csv')
 
 summary(train)
 
+train[is.na(train)]=0
+train <- train[is.na(train)]=0
+
+ind <-   which(sapply(train, is.numeric))
+for(j in ind){
+  set(train, i = which(is.na(train[[j]])), j = j, value = 0)
+}
+
+train[is.na(train)] <- 0
