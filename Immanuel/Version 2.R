@@ -14,8 +14,8 @@ require(magrittr)
 train <- fread('/Users/immanuelspiess/Documents/HTWG /8/Teamprojekt/Housing/Data/train.csv', header = T, stringsAsFactors = T)
 test <- fread('/Users/immanuelspiess/Documents/HTWG /8/Teamprojekt/Housing/Data/test.csv', header = TRUE, stringsAsFactors = T)
 
-trainY <- train[,81]
-trainX <- train[,-81]
+trainY <- train[]
+trainX <- train[]
 step <- rbind(trainX, test, fill=TRUE)
 
 
@@ -67,4 +67,6 @@ write.csv(ergebnisseV2, 'Immanuel_V2_Erg.csv', row.names = FALSE, quote = FALSE)
 write.csv(pred, file="answer.csv")
 imp <- xgb.importance (model = boost)
 xgb.plot.importance (importance_matrix = imp[1:20]) 
+
+write.csv(train_final, 'train_final.csv', row.names = FALSE, quote = FALSE)
 
