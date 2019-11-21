@@ -14,8 +14,8 @@ require(magrittr)
 train <- fread('/Users/immanuelspiess/Documents/HTWG /8/Teamprojekt/Housing/Data/train.csv', header = T, stringsAsFactors = T)
 test <- fread('/Users/immanuelspiess/Documents/HTWG /8/Teamprojekt/Housing/Data/test.csv', header = TRUE, stringsAsFactors = T)
 
-trainY <- train[]
-trainX <- train[]
+trainY <- train[,-81]
+trainX <- train[,-81]
 step <- rbind(trainX, test, fill=TRUE)
 
 
@@ -26,9 +26,9 @@ char_n_idx = which(char$char == TRUE)
 
 # in Nummer Konvertieren
 
-char <- t(data.frame(lapply(step, is.factor))) #we need to use t to transpose it 
-#as it originally a 2*n dataframe but n*2 is more user friendly
-char <- data.frame(char) #change it to dataframe to get dimension
+char <- t(data.frame(lapply(step, is.factor)))
+
+char <- data.frame(char) 
 
 name = row.names(char)
 char_n_idx = which(char$char == TRUE)
@@ -68,5 +68,5 @@ write.csv(pred, file="answer.csv")
 imp <- xgb.importance (model = boost)
 xgb.plot.importance (importance_matrix = imp[1:20]) 
 
-write.csv(train_final, 'train_final.csv', row.names = FALSE, quote = FALSE)
+#write.csv(train_final, 'train_final.csv', row.names = FALSE, quote = FALSE)
 
