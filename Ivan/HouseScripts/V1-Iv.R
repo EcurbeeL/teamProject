@@ -29,7 +29,5 @@ head(predicted_prices)
 # create a dataframe with our results
 my_submission <- data_frame('Id' = as.integer(test$Id), 'SalePrice' = predicted_prices)
 # save our file
-
 write_csv(my_submission, 'Submissions/V1-Iv.csv')
-
 

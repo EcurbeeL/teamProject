@@ -7,6 +7,14 @@ library(dplyr)
 train <- read.csv("C:/Users/Ivan/Documents/teamProject/HouseData/train.csv")
 test <- read.csv("C:/Users/Ivan/Documents/teamProject/HouseData/test.csv")
 
+#replace NA with 0
+i <- sapply(train, is.factor) # Identify all factor variables in your data
+train[i] <- lapply(train[i], as.character) # Convert factors to character variables
+train[is.na(train)] <- 0 # Replace NA with 0
+train[i] <- lapply(train[i], as.factor) # Convert character columns back to factors
+
+colSums(sapply(train, is.na))
+
 # fit our model
 model <- randomForest(SalePrice ~ LotArea + OverallQual + YearBuilt + TotRmsAbvGrd, data = train)
 
@@ -21,14 +29,4 @@ my_submission <- data_frame('Id' = as.integer(test$Id), 'SalePrice' = predicted_
 # save our file
 write_csv(my_submission, 'Submissions/V1.csv')
 
-summary(train)
 
-
-train -> data_5
-
-i <- sapply(data_5, is.factor) # Identify all factor variables in your data
-data_5[i] <- lapply(data_5[i], as.character) # Convert factors to character variables
-data_5[is.na(data_5)] <- 0 # Replace NA with 0
-data_5[i] <- lapply(data_5[i], as.factor) # Convert character columns back to factors
-
-colSums(sapply(data_5, is.na))
