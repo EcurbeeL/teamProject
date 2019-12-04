@@ -5,12 +5,12 @@ library(ranger)
 
 #Read Files
  
-train <- data.table::fread('/Users/immanuelspiess/Documents/HTWG /8/Teamprojekt/GIt/PBS-Kids/data-science-bowl-2019/s_train.csv', stringsAsFactors = F)
+train_data <- data.table::fread('/Users/immanuelspiess/Documents/HTWG /8/Teamprojekt/GIt/PBS-Kids/data-science-bowl-2019/2s_train.csv', stringsAsFactors = F)
 train_labels <- data.table::fread('/Users/immanuelspiess/Documents/HTWG /8/Teamprojekt/GIt/PBS-Kids/data-science-bowl-2019/train_labels.csv', stringsAsFactors = F)
 test <- data.table::fread('/Users/immanuelspiess/Documents/HTWG /8/Teamprojekt/GIt/PBS-Kids/data-science-bowl-2019/test.csv')
 
 
-train %>%
+train_data %>%
   filter(type =="Assessment") %>% 
   distinct(installation_id) %>% 
   left_join(train, by = "installation_id") -> train
