@@ -23,7 +23,7 @@ q_kappa <-  cmpfun(function(observed, predicted, levels = 0L:4L){ #Anlegen der F
     j <- j[ind]
     
     #Gewichtungsmatrix berechnen
-    W <- sparseMatrix(i, j, , (i - j)^2/(n-1)^2, c(n, n), symmetric = TRUE)
+    W <- sparseMatrix(i, j, (i - j)^2/(n-1)^2, c(n, n), symmetric = TRUE)
     O <- table(observed, predicted)
     
     #Histogram berechnen
@@ -31,7 +31,7 @@ q_kappa <-  cmpfun(function(observed, predicted, levels = 0L:4L){ #Anlegen der F
     predicted <- table(predicted)
     
     #Werte berechnen
-    E <- sparseMatrix(i2, j2, , observed[i2] * predicted[j2], c(n, n))
+    E <- sparseMatrix(i2, j2, observed[i2] * predicted[j2], c(n, n))
     
     #Kappa Berechnen
     1 - (sum(O * W) * sum(E)) / (sum(E * W) * sum(O))
