@@ -13,7 +13,7 @@ test <- data.table::fread('/Users/immanuelspiess/Documents/HTWG /8/Teamprojekt/G
 train_data %>%
   filter(type =="Assessment") %>% 
   distinct(installation_id) %>% 
-  left_join(train, by = "installation_id") -> train
+  left_join(train, by = "installation_id") -> train_data
 
 
 test %>% 
