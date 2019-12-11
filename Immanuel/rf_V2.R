@@ -123,21 +123,23 @@ test_set_impute$accuracy_group <- predict(rf_fit, test_set_impute)
 
 test_set_impute %>% select(installation_id, accuracy_group) -> submission
 
-df_train %>% select(installation_id, accuracy_group) -> for_kappa_train
-df_test %>% select(installation_id, accuracy_group) -> for_kappa_test
+write.csv(submission, "submission.csv", row.names = F)
 
-for_kappa_test %>% left_join(., for_kappa_train, by = 'installation_id') -> for_kappa_fin
+#df_train %>% select(installation_id, accuracy_group) -> for_kappa_train
+#df_test %>% select(installation_id, accuracy_group) -> for_kappa_test
 
-for_kappa_fin %>% select(accuracy_group.y != NA) -> for_kappa_fin2
+#for_kappa_test %>% left_join(., for_kappa_train, by = 'installation_id') -> for_kappa_fin
 
-submission %>% select(installation_id, accuracy_group) %>% left_join(for_kappa, accuracy_group, by = 'installation_id') -> for_kappa2
+#for_kappa_fin %>% select(accuracy_group.y != NA) -> for_kappa_fin2
 
-for_kappa %>% select(installation_id, accuracy_group) %>% left_join(submission, accuracy_group, by = 'installation_id') -> for_kappa3
+#submission %>% select(installation_id, accuracy_group) %>% left_join(for_kappa, accuracy_group, by = 'installation_id') -> for_kappa2
+
+#for_kappa %>% select(installation_id, accuracy_group) %>% left_join(submission, accuracy_group, by = 'installation_id') -> for_kappa3
   
-q_kappa(for_kappa_fin$accuracy_group.x[1:3],for_kappa_fin$accuracy_group.y[1:3],3:3)
+#q_kappa(for_kappa_fin$accuracy_group.x[1:3],for_kappa_fin$accuracy_group.y[1:3],3:3)
 
 
-q_kappa(1,2)
+#q_kappa(1,2)
   
   
   
