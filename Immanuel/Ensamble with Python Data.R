@@ -76,6 +76,9 @@ rf7 <- h2o.randomForest(        ##
   seed = 1)
 
 
+#ssdf
+
+
 ensemble <- h2o.stackedEnsemble(x = names,
                                 y = c("accuracy_group"),
                                 training_frame = train,
