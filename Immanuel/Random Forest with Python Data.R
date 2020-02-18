@@ -20,23 +20,50 @@ test <- fread("/Users/immanuelspiess/Documents/HTWG /8/Teamprojekt/GIt/PBS-Kids/
 # df_test <- train[-train_index, ]
 
 
-predict <- randomForest(
-  training_frame = train,       ##
-  #validation_frame = NM_VAL_1,     ##
-  x=names,                       ##
-  y=c("accuracy_group"),                         ##
-  model_id = "rf_covType21",     ## 
-  ntrees = 250,                 ##
-  max_depth = 20,               ## Increase depth, from 20
-  stopping_rounds = 20,          ##
-  stopping_tolerance = 1e-2,    ##
-  score_each_iteration = T,
-  stopping_metric = "RMSE",
-  nfolds = 4,
-  fold_assignment = "AUTO",
-  keep_cross_validation_predictions = TRUE,
-  seed = 1)
+pred<-test[,"installation_id"]
+pred<-as.data.frame(pred)
+
+names<-as.vector(colnames(train))
+names<-names[names != c("accuracy_group")]
+names<-names[names != c("installation_id")]
+
+trainaccuracy_group<-as.factor(train$accuracy_group)
+train <- subset(train, select = -c(installation_id) )
+test <- subset(test, select = -c(installation_id) )
+
+
+predict <- ranger(
+  # training_frame = train,
+   x = names,
+   y=c("accuracy_group"), 
+   model_id = "rf_covType21",
+   ntrees = 250,           
+   max_depth = 20,               ## Increase depth, from 20
+   stopping_rounds = 20,          ##
+   stopping_tolerance = 1e-2,    ##
+   score_each_iteration = T,
+   stopping_metric = "RMSE",
+   nfolds = 4,
+   fold_assignment = "AUTO",
+   keep_cross_validation_predictions = TRUE,
 )
+
+# predict <- randomForest(
+#   training_frame = train,       
+#   #validation_frame = NM_VAL_1,     
+#   x=names,                       
+#   y=c("accuracy_group"),                         ##
+#   model_id = "rf_covType21",     ## 
+#   ntrees = 250,                 ##
+#   max_depth = 20,               ## Increase depth, from 20
+#   stopping_rounds = 20,          ##
+#   stopping_tolerance = 1e-2,    ##
+#   score_each_iteration = T,
+#   stopping_metric = "RMSE",
+#   nfolds = 4,
+#   fold_assignment = "AUTO",
+#   keep_cross_validation_predictions = TRUE,
+#   seed = 1))
 
 
 test$accuracy_group <- predict(rf_fit, test)

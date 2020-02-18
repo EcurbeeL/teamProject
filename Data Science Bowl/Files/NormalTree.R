@@ -4,6 +4,8 @@ library(rpart.plot)
 library(tidyverse)
 library(dplyr)
 
+install.packages('catboost')
+
 #
 
 # Read Train Data 
